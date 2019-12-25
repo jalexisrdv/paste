@@ -88,6 +88,16 @@ th, td {
 .navegation ul li:last-of-type {
     margin-right: 0;
 }
+/*---------------------SEARCH---------------------*/
+.container-search form {
+    display: grid;
+    gap: 2rem 0;
+}
+@media (min-width: 480px) {
+    .container-search form {
+        display: flex;
+    }
+}
 /*---------------------MAIN---------------------*/
 .container-search,
 .main .new-paste,
@@ -102,8 +112,13 @@ th, td {
     display: flex;
 }
 .form-search .search {
-    flex-basis: 85%;
-    margin-right: 2rem;
+    margin-right: 0rem;
+}
+@media (min-width: 480px) {
+    .form-search .search {
+        flex-basis: 85%;
+        margin-right: 2rem;
+    }
 }
 .form-search .btn-search {
     flex-basis: 15%;
@@ -111,6 +126,7 @@ th, td {
 .main .pastes {
     background-color: #262525;
 }
+/*---------------------PAGINATION---------------------*/
 .pagination ul {
     list-style: none;
     display: flex;
@@ -130,6 +146,23 @@ th, td {
 .pagination a:hover {
     color: #ddd;
     background-color: #555;
+}
+@media (max-width: 768px) {
+    .pagination {
+        display: flex;
+        justify-content: center;
+    }
+    .pagination ul {
+        text-align: center;
+        list-style: none;
+        display: grid;
+        gap: 3rem 0;
+        width: 50%;
+    }
+    .pagination a {
+        display: block;
+        padding: 2rem;
+    }
 }
 /*---------------------NEW---------------------*/
 .main .field-tab .content {
