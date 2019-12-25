@@ -27,13 +27,13 @@ a {
     text-decoration: none;
 }
 h1 {
-    font-size: 3.8rem;
-}
-h2 {
     font-size: 3.4rem;
 }
-h3 {
+h2 {
     font-size: 3rem;
+}
+h3 {
+    font-size: 2.6rem;
 }
 img {
     max-width: 100%;
@@ -77,6 +77,9 @@ th, td {
 .navegation ul li a {
     display: block;
     padding: 1.5rem 3rem;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    transition: all 0.25s linear;
 }
 .navegation ul li a:hover {
     color: #cdcdcd;
@@ -86,12 +89,14 @@ th, td {
     margin-right: 0;
 }
 /*---------------------MAIN---------------------*/
-.container-search {
+.container-search,
+.main .new-paste,
+.configurations,
+.login,
+.recover-password,
+.register {
     background-color: #262525;
     padding: 2rem;
-}
-.main .pastes {
-    background-color: #262525;
 }
 .form-search {
     display: flex;
@@ -102,6 +107,75 @@ th, td {
 }
 .form-search .btn-search {
     flex-basis: 15%;
+}
+.main .pastes {
+    background-color: #262525;
+}
+.pagination ul {
+    list-style: none;
+    display: flex;
+}
+.pagination a {
+    background-color: #777;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    margin: 0 7px 0 0;
+    color: #ddd;
+    padding: 7px 10px 5px;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    transition: all 0.25s linear;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.pagination a:hover {
+    color: #ddd;
+    background-color: #555;
+}
+/*---------------------NEW---------------------*/
+.main .field-tab .content {
+    display: none;
+}
+.main .field-tab .content.active {
+    display: block;
+}
+.new-paste form,
+.new-paste .field-tab .content.active,
+.new-paste .type-paste {
+    display: grid;
+    gap: 2rem 0;
+}
+.type-paste {
+    width: 50%;
+}
+/*---------------------CONFIGURATIONS---------------------*/
+.config-admin,
+.config-site,
+.config-advertising,
+.config-modules {
+    display: grid;
+    gap: 2rem 0;
+}
+.config-modules {
+    width: 50%;
+}
+.save-changes {
+    margin-top: 2rem;
+    width: 100%;
+}
+/*---------------------LOGIN---------------------*/
+.login form {
+    display: grid;
+    gap: 2rem 0;
+}
+/*---------------------RECOVER PASSWORD---------------------*/
+.recover-password form {
+    display: grid;
+    gap: 2rem 0;
+}
+/*---------------------USER REGISTER---------------------*/
+.register form {
+    display: grid;
+    gap: 2rem 0;
 }
 /*---------------------FOOTER---------------------*/
 .footer {
@@ -114,11 +188,18 @@ th, td {
 :-ms-input-placeholder { color: #cdcdcd; }
 :-moz-placeholder { color: #cdcdcd; }
 ::-moz-placeholder { color: #cdcdcd; }
-input {
+input, textarea {
     color: #cdcdcd;
 }
+textarea {
+    min-width: 100%;
+    min-height: 30rem;
+}
 input[type="text"],
-input[type="search"] {
+input[type="search"],
+input[type="password"],
+input[type="email"],
+textarea {
     background-color: #555;
     padding: 1rem 2rem;
     border: 1px solid #2e2e22;
@@ -134,4 +215,40 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background: #994e4e;
     border-bottom: 3px solid #793e3e;
+}
+.content-select {
+    position: relative;
+}
+.content-select select {
+    appearance: none;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+	display: inline-block;
+    cursor: pointer;
+    width: 100%;
+  	padding: 7px 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #555;
+	color: #cdcdcd;
+	border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+}
+/* 
+Creamos la fecha que aparece a la izquierda del select.
+Realmente este elemento es un cuadrado que sólo tienen
+dos bordes con color y que giramos con transform: rotate(-45deg);
+*/
+.content-select i {
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #cdcdcd;
+	border-bottom:4px solid #cdcdcd;
+	transform: rotate(-45deg); /* Giramos el cuadrado */
 }
