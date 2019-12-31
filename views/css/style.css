@@ -104,7 +104,8 @@ th, td {
 .configurations,
 .login,
 .recover-password,
-.register {
+.register,
+.paste {
     background-color: #262525;
     padding: 2rem;
 }
@@ -131,11 +132,13 @@ th, td {
     list-style: none;
     display: flex;
 }
+.pagination ul li {
+    margin-right: 0.7rem;
+}
 .pagination a {
     background-color: #777;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    margin: 0 7px 0 0;
     color: #ddd;
     padding: 7px 10px 5px;
     -webkit-transition: all 0.25s linear;
@@ -143,9 +146,12 @@ th, td {
     transition: all 0.25s linear;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
+.pagination .current a {
+    background-color: #444;
+}
 .pagination a:hover {
     color: #ddd;
-    background-color: #555;
+    background-color: #444;
 }
 @media (max-width: 768px) {
     .pagination {
@@ -177,6 +183,10 @@ th, td {
     display: grid;
     gap: 2rem 0;
 }
+#field-tab .content {
+    background-color: unset;
+    padding: 0;
+}
 .type-paste {
     width: 50%;
 }
@@ -194,6 +204,28 @@ th, td {
 .save-changes {
     margin-top: 2rem;
     width: 100%;
+}
+/*---------------------PASTE---------------------*/
+.paste {
+    display: grid;
+    gap: 2rem 0;
+}
+.paste .content {
+    display: none;
+    background-color: #333;
+    padding: 2rem;
+    overflow: scroll;
+}
+.paste .content.active {
+    display: block;
+}
+.paste .content.active a:hover {
+    color: #eee;
+}
+.error {
+    background-color: 
+    #4f1b1b;
+    padding: 2rem;
 }
 /*---------------------LOGIN---------------------*/
 .login form {
@@ -227,6 +259,7 @@ input, textarea {
 textarea {
     min-width: 100%;
     min-height: 30rem;
+    overflow: scroll;
 }
 input[type="text"],
 input[type="search"],

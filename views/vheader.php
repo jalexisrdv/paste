@@ -16,7 +16,7 @@
         <nav class="navegation box-shadow-black margin-top-2">
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="new.php">Nuevo</a></li>
+                <li><a href="nuevo.php">Nuevo</a></li>
                 <li><a href="#">Reportados</a></li>
                 <li><a href="pastes.php">Pastes</a></li>
                 <li><a href="users.php">Usuarios</a></li>

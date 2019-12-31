@@ -10,30 +10,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="#">Titulo del paste #1</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #2</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #3</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #4</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #5</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #6</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #7</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #8</a></td>
-                    </tr>
+                    <?php foreach($pastes as $paste): ?>
+                        <tr>
+                            <td><a href="?v=<?php echo $paste['pasteID']; ?>"><?php echo $paste['titulo']; ?></a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

@@ -12,51 +12,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="#">Titulo del paste #1</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #2</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #3</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #4</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #5</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #6</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #7</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Titulo del paste #8</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
-                    </tr>
-                </tbody>
+                    <?php foreach($pastes as $paste): ?>
+                        <tr>
+                            <td><a href="./?v=<?php echo $paste['pasteID']; ?>"><?php echo $paste['Titulo']; ?></a></td>
+                            <td><a href="?u=<?php echo $paste['pasteID']; ?>">Editar</a></td>
+                            <td><a href="?d=<?php echo $paste['pasteID']; ?>">Eliminar</a></td>
+                        </tr>
+                    <?php endforeach; ?>
             </table>
         </div>
 
-        <?php require_once 'pagination.php'; ?>
+        <?php //require_once 'pagination.php'; ?>
     </main>
     
     <?php require_once 'footer.php'; ?>
