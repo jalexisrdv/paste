@@ -14,7 +14,7 @@
                 <tbody>
                     <?php foreach($pastes as $paste): ?>
                         <tr>
-                            <td><a href="./?v=<?php echo $paste['pasteID']; ?>"><?php echo $paste['Titulo']; ?></a></td>
+                            <td><a href="./?v=<?php echo $paste['pasteID']; ?>"><?php echo $paste['titulo']; ?></a></td>
                             <td><a href="?u=<?php echo $paste['pasteID']; ?>">Editar</a></td>
                             <td><a href="?d=<?php echo $paste['pasteID']; ?>">Eliminar</a></td>
                         </tr>
@@ -22,7 +22,7 @@
             </table>
         </div>
 
-        <?php //require_once 'pagination.php'; ?>
+        <?php require_once 'pagination.php'; ?>
     </main>
     
     <?php require_once 'footer.php'; ?>

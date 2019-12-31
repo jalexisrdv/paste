@@ -9,7 +9,7 @@ class SQLPastes {
         $this->connection = Connection::getConnection();
     }
 
-    public function insertPost($dates) {
+    public function insertPaste($dates) {
         $sql = 'INSERT INTO paste (pass, Titulo, Mirror1, Mirror2, Mirror3, Mirror4, Mirror5, Mirror6, Mname1, Mname2, Mname3, Mname4, Mname5, Mname6, Mesrep, views, user_id, vip, reported) VALUES (:pass, :titulo, :mirror1, :mirror2, :mirror3, :mirror4, :mirror5, :mirror6, :mname1, :mname2, :mname3, :mname4, :mname5, :mname6, :mesrep, :views, :user_id, :vip, :reported)';
         $statement = $this->connection->prepare($sql);
         $statement->execute(Array(
@@ -69,16 +69,7 @@ class SQLPastes {
         ));
     }
 
-    public function searchPaste($filtro) {
-        $statement = $this->connection->prepare("SELECT SQL_CALC_FOUND_ROWS pasteID, Titulo FROM paste WHERE Titulo LIKE :filtro");
-        $statement->execute(Array(
-            ':filtro' => "%$filtro%"
-        ));
-        $results = $statement->fetchAll();
-        return $results;
-    }
-
-    public function getPostByID($id) {
+    public function getPasteByID($id) {
         $statement = $this->connection->prepare("SELECT * FROM paste WHERE pasteID = :id");
         $statement->execute(Array(
             ':id' => $id
@@ -87,11 +78,11 @@ class SQLPastes {
         return $result;
     }
 
-    public function getAllPastes() {
-        $statement = $this->connection->prepare('SELECT * FROM paste');
+    public function getUltimoPaste() {
+        $statement = $this->connection->prepare("SELECT pasteID FROM paste ORDER BY pasteID DESC LIMIT 1");
         $statement->execute();
-        $results = $statement->fetchAll();
-        return $results;
+        $result = $statement->fetch();
+        return $result;
     }
 
     public function getLimitPastes($search, $start, $end) {
@@ -105,7 +96,7 @@ class SQLPastes {
         return $results;
     }
 
-    public function getTotalPost() {
+    public function getTotalPaste() {
         $statement = $this->connection->prepare('SELECT FOUND_ROWS() AS total');
         $statement->execute();
         return (int) ($statement->fetch()['total']);
