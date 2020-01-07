@@ -29,13 +29,13 @@
             <?php endif; ?>
         <?php endfor; ?>
 
-        <?php if($_SESSION['typeUser']=='autor'): ?>
+        <?php if(!empty($_SESSION) && $_SESSION['typeUser']=='autor'): ?>
             <?php if($_SESSION['userID']==$paste['user_id']): ?>
                 <a class="button" href="paste.php?u=<?php echo $idPaste; ?>">Editar</a>
             <?php endif; ?>
         <?php endif; ?>
 
-        <?php if($_SESSION['typeUser']=='administrador'): ?>
+        <?php if(!empty($_SESSION) && $_SESSION['typeUser']=='administrador'): ?>
             <a class="button" href="paste.php?u=<?php echo $idPaste; ?>">Editar</a>
         <?php endif; ?>
     </div>

@@ -2,7 +2,7 @@
 
     <?php 
     
-        if(!empty($_SESSION) && $_SESSION['typeUser']!='administrador') {
+        if($_SESSION['typeUser']!='administrador') {
             header('Location: ./');
         }
     
