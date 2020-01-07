@@ -66,7 +66,8 @@ if(!empty($_GET['v'])) {
     //Solo el admin puede eliminar paste
     if($_SESSION['typeUser']!='administrador') {
         header('Location: ./pastes.php');
+    }else {
+        $sqlPastes->deletePaste(clearDate($_GET['d']));
+        header('Location: ./pastes.php');
     }
-    $sqlPastes->deletePaste(clearDate($_GET['d']));
-    header('Location: ./pastes.php');
 }
