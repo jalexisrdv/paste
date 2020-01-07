@@ -6,6 +6,7 @@ if(!empty($_SESSION)) {
 
     require_once 'models/sql-users.php';
     require_once 'models/m-pagination.php';
+    require_once 'models/functions.php';
 
     $sqlUsers = new SQLUsers();
     $pagination = new Pagination(8);
@@ -20,6 +21,14 @@ if(!empty($_SESSION)) {
     $totalPages = $pagination->getTotalPages($sqlUsers->getTotalUsers());
 
     require_once 'views/vusers.php';
+
+    //Eliminar usuarios
+    if($_SESSION['typeUser']=='administrador') {
+        if(!empty($_GET['d'])) {
+            $sqlUsers->deleteUser(clearDate($_GET['d']));
+            header('Location: ./usuarios.php');
+        }
+    }
 
 }else {
     header('Location: .');

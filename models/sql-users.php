@@ -30,6 +30,13 @@ class SQLUsers {
         return (int) ($statement->fetch()['total']);
     }
 
+    public function deleteUser($userID) {
+        $statement = $this->connection->prepare("DELETE FROM user WHERE userID = :userID");
+        $statement->execute(Array(
+            ':userID' => $userID
+        ));
+    }
+
     public function updatePassword($user, $password) {
         $statement = $this->connection->prepare("UPDATE user SET pass = :password WHERE user = :user");
         $statement->execute(Array(
