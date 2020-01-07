@@ -6,7 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="views/css/style.css">
     <link rel="stylesheet" href="views/css/normalize.css">
-    <title>My paste</title>
+    <title>
+        <?php 
+
+            $nameSite = $configurations['site-dates']['name-site'];
+            $descriptionSite = $configurations['site-dates']['description-site'];
+
+            if(!empty($nameSite) && !empty($descriptionSite)) {
+                echo $nameSite . ' - ' . $descriptionSite; 
+            }
+        ?>
+    </title>
 </head>
 <body>
     <header class="header container">
@@ -16,12 +26,21 @@
         <nav class="navegation box-shadow-black margin-top-2">
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="nuevo.php">Nuevo</a></li>
-                <li><a href="#">Reportados</a></li>
-                <li><a href="pastes.php">Pastes</a></li>
-                <li><a href="users.php">Usuarios</a></li>
-                <li><a href="configurations.php">Configuraciones</a></li>
-                <li><a href="#">Cerrar sesión</a></li>
+                <?php if(!empty($_SESSION)): ?>
+                    <?php if($_SESSION['typeUser']=='administrador'): ?>
+                        <li><a href="nuevo.php">Nuevo</a></li>
+                        <li><a href="#">Reportados</a></li>
+                        <li><a href="pastes.php">Pastes</a></li>
+                        <li><a href="usuarios.php">Usuarios</a></li>
+                    <?php elseif($_SESSION['typeUser']=='autor'): ?>
+                        <li><a href="nuevo.php">Nuevo</a></li>
+                        <li><a href="pastes.php">Pastes</a></li>
+                    <?php endif; ?>
+                    <li><a href="configuraciones.php">Configuraciones</a></li>
+                    <li><a href="logout.php">Cerrar sesión</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Iniciar sesión</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

@@ -1,34 +1,28 @@
 <?php
 
+session_start();
+
 require_once 'models/sql-pastes.php';
 require_once 'models/m-pagination.php';
+require_once 'models/functions.php';
 
 $sqlPastes = new SQLPastes();
-$pagination = new Pagination(8, 4);
+$pagination = new Pagination(8);
 
-$currentPage = $pagination->getCurrentPage($_GET);
+$pagina = (!empty($_GET['pagina'])) ? clearDate($_GET['pagina']) : '';
+$currentPage = $pagination->getCurrentPage($pagina);
 $start = $pagination->getStartLimit($currentPage);
-$pastesByPage = $pagination->getPastesByPage();
-$search = (!empty($_GET['buscar'])) ? $_GET['buscar'] : '';
-$pastes = $sqlPastes->getLimitPastes($search, $start, $pastesByPage);
+$pastesByPage = $pagination->getElementsByPage();
+$search = (!empty($_GET['buscar'])) ? clearDate($_GET['buscar']) : '';
 
-if(!$pastes) {
-    header('Location: ./pastes.php');
+//Si es admin puede ver todos los pastes creados
+//Si es autor solo puede ver los pastes que el ha creado
+if($_SESSION['typeUser']=='administrador') {
+    $pastes = $sqlPastes->getLimitPastes($search, $start, $pastesByPage);
+}else if($_SESSION['typeUser']=='autor') {
+    $pastes = $sqlPastes->getLimitPastesByAutor($search, $start, $pastesByPage, $_SESSION['userID']);
 }
 
 $totalPages = $pagination->getTotalPages($sqlPastes->getTotalPaste());
 
-if(!empty($_GET['u'])) {//actualizacion de paste
-    $paste = $sqlPastes->getPasteByID($_GET['u']);
-    if(!empty($_POST)) {//datos del paste capturados
-        $idPaste = $_GET['u'];
-        $sqlPastes->updatePaste($_POST, $idPaste);
-        header("Location: ./?v=$idPaste");
-    }
-    require_once 'views/vnew.php';
-}else if(!empty($_GET['d'])) {//eliminar paste
-    $sqlPastes->deletePaste($_GET['d']);
-    header("Location: ./pastes.php");
-}else {
-    require_once 'views/vpastes.php';
-}
+require_once 'views/vpastes.php';

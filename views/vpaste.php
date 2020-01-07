@@ -15,7 +15,7 @@
             <?php if(!empty($paste["Mirror$i"])): ?>
                 <div class="content tab-<?php echo $i; ?>">
                     <?php 
-
+                        //Detecta urls y agrega a etiqueta
                         $text = $paste["Mirror$i"];
 
                         $patron = '~([a-z|A-Z]+:\/\/\S+|[a-z|A-Z|0-9|-]+\.[a-z|A-Z]+\S+)~';
@@ -28,6 +28,16 @@
                 </div>
             <?php endif; ?>
         <?php endfor; ?>
+
+        <?php if($_SESSION['typeUser']=='autor'): ?>
+            <?php if($_SESSION['userID']==$paste['user_id']): ?>
+                <a class="button" href="paste.php?u=<?php echo $idPaste; ?>">Editar</a>
+            <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if($_SESSION['typeUser']=='administrador'): ?>
+            <a class="button" href="paste.php?u=<?php echo $idPaste; ?>">Editar</a>
+        <?php endif; ?>
     </div>
 </main>
 

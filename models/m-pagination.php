@@ -2,17 +2,15 @@
 
 class Pagination {
 
-    private $pastesByPage;
-    private $numberPages;
+    private $elementsByPage;
 
-    public function __construct($pastesByPage, $numberPages) {
-        $this->pastesByPage = $pastesByPage;
-        $this->numberPages = $numberPages;
+    public function __construct($elementsByPage) {
+        $this->elementsByPage = $elementsByPage;
     }
 
     public function getStartLimit($page) {
         if($page > 1) {
-            $start = $page * $this->pastesByPage - $this->pastesByPage;
+            $start = $page * $this->elementsByPage - $this->elementsByPage;
             return $start;
         }else {
             return 0;
@@ -20,8 +18,8 @@ class Pagination {
     }
 
     public function getCurrentPage($currentPage) {
-        if(isset($currentPage['pagina'])) {
-            $page = (int) $_GET['pagina'];
+        if(!empty($currentPage)) {
+            $page = (int) $currentPage;
             return $page;
         }else {
             return 1;
@@ -29,12 +27,12 @@ class Pagination {
     }
 
     public function getTotalPages($totalPastes) {
-        $totalPages = ceil($totalPastes / $this->pastesByPage);
+        $totalPages = ceil($totalPastes / $this->elementsByPage);
         return $totalPages;
     }
 
-    public function getPastesByPage() {
-        return $this->pastesByPage;
+    public function getElementsByPage() {
+        return $this->elementsByPage;
     }
 
 }

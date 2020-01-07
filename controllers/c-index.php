@@ -1,19 +1,26 @@
 <?php
 
+session_start();
+
 require_once 'models/sql-pastes.php';
 require_once 'models/m-pagination.php';
+require_once 'models/functions.php';
 
 $sqlPastes = new SQLPastes();
-$pagination = new Pagination(8, 4);
+$pagination = new Pagination(8);
 
-if(!isset($_GET['v'])) {
-    
-    require_once 'models/functions.php';
+if(!empty($_GET['v'])) {
 
-    $currentPage = $pagination->getCurrentPage($_GET);
+    //Se carga la vista para mostrar el contenido del paste
+    require_once 'paste.php';
+
+}else {
+
+    $pagina = (!empty($_GET['pagina'])) ? clearDate($_GET['pagina']) : '';
+    $currentPage = $pagination->getCurrentPage($pagina);
     $start = $pagination->getStartLimit($currentPage);
-    $pastesByPage = $pagination->getPastesByPage();
-    $search = (!empty($_GET['buscar'])) ? $_GET['buscar'] : '';
+    $pastesByPage = $pagination->getElementsByPage();
+    $search = (!empty($_GET['buscar'])) ? clearDate($_GET['buscar']) : '';
     $pastes = $sqlPastes->getLimitPastes($search, $start, $pastesByPage);
 
     if(!$pastes) {
@@ -22,15 +29,5 @@ if(!isset($_GET['v'])) {
 
     $totalPages = $pagination->getTotalPages($sqlPastes->getTotalPaste());
 
-/*if (!is_numeric($_GET['v'])){
-    $aux = bstrtob10($_GET['v']);
-    @header("Location:.?v=".$aux);
-    exit('<meta http-equiv="Refresh" content="0;url=.?v='.$aux.'">');
-}*/
-
     require_once 'views/vindex.php';
-
-}else {
-    //Se carga la vista para mostrar el contenido del paste
-    require_once 'paste.php';
 }

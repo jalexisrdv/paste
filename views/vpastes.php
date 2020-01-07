@@ -8,15 +8,19 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        <?php if(!empty($_SESSION) && $_SESSION['typeUser']=='administrador'): ?>
+                            <th>Eliminar</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach($pastes as $paste): ?>
                         <tr>
                             <td><a href="./?v=<?php echo $paste['pasteID']; ?>"><?php echo $paste['titulo']; ?></a></td>
-                            <td><a href="?u=<?php echo $paste['pasteID']; ?>">Editar</a></td>
-                            <td><a href="?d=<?php echo $paste['pasteID']; ?>">Eliminar</a></td>
+                            <td><a href="./paste.php?u=<?php echo $paste['pasteID']; ?>">Editar</a></td>
+                            <?php if(!empty($_SESSION) && $_SESSION['typeUser']=='administrador'): ?>
+                                <td><a href="./paste.php?d=<?php echo $paste['pasteID']; ?>">Eliminar</a></td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
             </table>

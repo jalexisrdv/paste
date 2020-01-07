@@ -67,7 +67,9 @@
                     </div>-->
 
                     <input type="submit" value="Aplicar Cambios" class="create-new" id="create-new">
+
                 <?php else: ?><!-- ------CAMPOS PARA EL NUEVO PASTE------ -->
+                    
                     <label for="title">Titulo:</label>
                     <input type="text" name="title" id="title" class="title">
                     

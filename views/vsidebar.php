@@ -1,3 +1,4 @@
+    
     <aside class="sidebar container">
         <div class="margin-top-2 section container-search box-shadow-black">
             <form class="form-search" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">

@@ -2,8 +2,6 @@
 
 class Connection {
 
-    private $connection;
-
     static function getConnection() {
         try {
             $options = [
@@ -15,6 +13,7 @@ class Connection {
             return $connection;
         }catch(PDOException $e) {
             echo 'Error durante la conexion: ' . $e->getMessage();
+            die();
         }
     }
 
