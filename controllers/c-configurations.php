@@ -8,7 +8,7 @@ require 'models/sql-users.php';
 $msjSuccess = '';
 $msjError = '';
 
-if(!isset($_SESSION) && $_SESSION['typeUser']=='administrador') {
+if(!empty($_SESSION) && $_SESSION['typeUser']=='administrador') {
     $configurations = parse_ini_file('models/admin-configuration.ini', true, INI_SCANNER_TYPED);
 
     if(!empty($_POST)) {
@@ -54,7 +54,7 @@ if(!isset($_SESSION) && $_SESSION['typeUser']=='administrador') {
     }
 
     require_once 'views/vadmin-configurations.php';
-}else if(!isset($_SESSION) && $_SESSION['typeUser']=='autor') {
+}else if(!empty($_SESSION) && $_SESSION['typeUser']=='autor') {
 
     if(!empty($_POST['email'])) {
         $sqlUsers = new SQLUsers();
