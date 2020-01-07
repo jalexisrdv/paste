@@ -19,7 +19,7 @@ if(!empty($_GET['v'])) {
     }
     $paste = $sqlPastes->getPasteByID($idPaste);
     if(!$paste) {
-        header('Location: .');
+        header('Location: /');
     }
     require_once 'views/vpaste.php';
 }else if(!empty($_SESSION)) {
@@ -75,5 +75,5 @@ if(!empty($_GET['v'])) {
     }
 
 }else {
-    header('Location: .');
+    header('Location: /');
 }

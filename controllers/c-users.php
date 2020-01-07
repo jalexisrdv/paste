@@ -31,5 +31,5 @@ if(!empty($_SESSION)) {
     }
 
 }else {
-    header('Location: .');
+    header('Location: /');
 }

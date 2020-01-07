@@ -33,5 +33,5 @@ if(!empty($_SESSION)) {
     require_once 'views/vnew.php';
 
 }else {
-    header('Location: .');
+    header('Location: /');
 }

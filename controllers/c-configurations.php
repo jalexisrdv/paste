@@ -81,5 +81,5 @@ if(!empty($_SESSION) && $_SESSION['typeUser']=='administrador') {
 
     require_once 'views/vuser-configurations.php';
 }else {
-    header('Location: .');
+    header('Location: /');
 }

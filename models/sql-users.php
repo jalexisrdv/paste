@@ -75,15 +75,15 @@ class SQLUsers {
 
     private function reviewPassword($user, $password, $passwordHash) {
         if(md5($password)===$passwordHash) {
-            //Ahora comprobamos si la contraseÃ±a necesita rehash
+            //Ahora comprobamos si la contrase«Ða necesita rehash
            if(password_needs_rehash($passwordHash, self::HASH, ['cost' => self::COST])) {
                //Actualizando el tipo de encriptacion
                 $this->updatePassword($user, $password);
             }
             return true;
         }else if($this->verify($password, $passwordHash)) {
-            //el hash de la contraseÃ±a es igual
-            //Ahora comprobamos si la contraseÃ±a necesita rehash
+            //el hash de la contrase«Ða es igual
+            //Ahora comprobamos si la contrase«Ða necesita rehash
            if(password_needs_rehash($passwordHash, self::HASH, ['cost' => self::COST])) {
                 //Actualizando el tipo de encriptacion
                 $this->updatePassword($user, $password);

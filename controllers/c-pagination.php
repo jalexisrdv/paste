@@ -7,5 +7,5 @@ if(!isset($_SESSION)) {
 if(!empty($_SESSION)) {
     require_once 'views/vpagination.php';
 }else {
-    header('Location: .');
+    header('Location: /');
 }

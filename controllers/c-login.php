@@ -19,7 +19,7 @@ if(!empty($_POST['user-name']) && !empty($_POST['user-password'])) {
         $_SESSION['user'] = $user['user'];
         $_SESSION['email'] = $user['mail'];
         $_SESSION['typeUser'] = $user['typeUser'];
-        header('Location: ./');
+        header('Location: /');
     }
     
 }

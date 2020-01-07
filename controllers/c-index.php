@@ -24,7 +24,7 @@ if(!empty($_GET['v'])) {
     $pastes = $sqlPastes->getLimitPastes($search, $start, $pastesByPage);
 
     if(!$pastes) {
-        header('Location: .');
+        header('Location: /');
     }
 
     $totalPages = $pagination->getTotalPages($sqlPastes->getTotalPaste());
